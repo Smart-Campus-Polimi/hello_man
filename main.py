@@ -116,7 +116,7 @@ class MyWindow(pyglet.window.Window):
 if __name__ == "__main__":
 
 	signal.signal(signal.SIGINT, signal_handler)
-	window = MyWindow(1024, 768, "test directions", resizable=False, visible=True, fullscreen=False)
+	window = MyWindow(1024, 768, "test hello", resizable=False, visible=True, fullscreen=True)
 
 	for user in users:
 		thread = PingHandler.PingThread(user, queue)
