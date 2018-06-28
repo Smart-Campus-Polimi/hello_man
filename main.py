@@ -20,7 +20,8 @@ queue = Queue.Queue(10)
 threads = []
 users = {"44:78:3e:a8:57:a0": {'name': "Alessandro", 'status': False},
 		 "d4:63:c6:f0:9e:ce": {'name': "Edoardo", 'status': False},
-		 "1C:66:AA:CC:9A:18": {'name': "Tucano", 'status': False}
+		 "1C:66:AA:CC:9A:18": {'name': "Tucano", 'status': False},
+	 	 "54:B1:21:AD:D1:42": {'name': "Armin", 'status': False}
 		 }
 
 
@@ -122,7 +123,7 @@ if __name__ == "__main__":
 
 	logging.info("Start")
 	signal.signal(signal.SIGINT, signal_handler)
-	window = MyWindow(1024, 768, "test directions", resizable=False, visible=True, fullscreen=False)
+	window = MyWindow(1024, 768, "test hello", resizable=False, visible=True, fullscreen=True)
 
 	for user in users:
 		logging.info("create threads")
