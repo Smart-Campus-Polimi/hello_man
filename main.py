@@ -9,7 +9,11 @@ import Queue
 import os
 import PingHandler
 import pyglet
+import logging
+
 from pyglet.gl import *
+
+logging.basicConfig(filename= 'logging.log',level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 queue = Queue.Queue(10)
@@ -96,9 +100,11 @@ class MyWindow(pyglet.window.Window):
 		
 		def update(self, dt):
 			if not queue.empty():
+				logging.info("receive a message")
 				name, new_status = queue.get()
 				if not users[name]['status']:
 					print "hello ", name
+					logging.info("turn on")
 					users[name]['status'] = True
 				
 
@@ -114,10 +120,12 @@ class MyWindow(pyglet.window.Window):
 #### MAIN ####
 if __name__ == "__main__":
 
+	logging.info("Start")
 	signal.signal(signal.SIGINT, signal_handler)
 	window = MyWindow(1024, 768, "test directions", resizable=False, visible=True, fullscreen=False)
 
 	for user in users:
+		logging.info("create threads")
 		thread = PingHandler.PingThread(user, queue)
 		threads.append(thread)
 		thread.start()
